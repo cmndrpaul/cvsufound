@@ -15,9 +15,24 @@ const bricolage = Bricolage_Grotesque({
   weight: ["600", "700", "800"],
 });
 
+const siteHost = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? (siteHost ? `https://${siteHost}` : "http://localhost:3000");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "CvSUFound – Lost & Found for the CvSU community",
   description: "Report, search and claim lost and found items on campus.",
+  openGraph: {
+    type: "website",
+    title: "CvSUFound – Lost & Found for the CvSU community",
+    description: "Report, search and claim lost and found items on campus.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CvSUFound – Lost & Found for the CvSU community",
+    description: "Report, search and claim lost and found items on campus.",
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
