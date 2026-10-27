@@ -30,13 +30,13 @@ export function ItemCard({ item }: { item: ItemWithRefs }) {
         <span className="text-[12.5px] font-bold tracking-wide text-brand-600">
           {item.categories?.name ?? "Uncategorized"}
         </span>
-        <h3 className="text-lg font-bold leading-snug text-ink-900">{item.title}</h3>
+        <h3 className="break-words text-lg font-bold leading-snug text-ink-900">{item.title}</h3>
         <div className="flex flex-col gap-1.5 text-sm text-ink-700">
-          <span className="flex items-center gap-2">
+          <span className="flex min-w-0 items-start gap-2 break-words">
             <PinIcon width={16} height={16} />
             {place || "Location not specified"}
           </span>
-          <span className="flex items-center gap-2">
+          <span className="flex min-w-0 items-center gap-2">
             <CalendarIcon width={16} height={16} />
             {formatDate(item.event_date)}
           </span>

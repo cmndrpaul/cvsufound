@@ -13,7 +13,7 @@ export const metadata: Metadata = { title: "Report an item – CvSUFound" };
 
 export default function ReportPage(props: PageProps<"/report">) {
   return (
-    <div className="mx-auto w-full max-w-2xl px-5 py-12 sm:px-8">
+    <div className="mx-auto w-full max-w-2xl px-5 py-10 sm:px-8 sm:py-12 lg:py-16">
       <header className="mb-8 flex flex-col gap-2">
         <h1 className="font-display text-4xl font-extrabold tracking-tight text-brand-800">Report an item</h1>
         <p className="text-base text-ink-700">
@@ -44,7 +44,7 @@ async function ReportContent({ searchParams }: { searchParams: PageProps<"/repor
   if (error) return <SetupNotice reason="database" />;
 
   return (
-    <div className="rounded-3xl border border-brand-200 bg-white p-6 sm:p-8">
+    <div className="rounded-3xl border border-brand-200 bg-white p-5 sm:p-8">
       <ReportForm categories={categories} locations={locations} userId={user.id} defaultType={defaultType} />
     </div>
   );

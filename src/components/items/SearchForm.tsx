@@ -7,9 +7,9 @@ export function SearchForm({ locations }: { locations: Location[] }) {
   return (
     <Form
       action="/items"
-      className="flex flex-wrap gap-2 rounded-[20px] bg-white p-3 shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
+      className="flex w-full flex-col gap-2 rounded-[20px] bg-white p-3 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:flex-row sm:items-stretch"
     >
-      <div className="flex min-w-0 flex-[2_1_220px] flex-col gap-0.5 px-3.5 py-2">
+      <div className="flex min-w-0 flex-1 flex-col gap-0.5 px-3.5 py-2">
         <label htmlFor="hero-q" className="text-xs font-bold uppercase tracking-wide text-ink-700">
           What did you lose?
         </label>
@@ -18,11 +18,11 @@ export function SearchForm({ locations }: { locations: Location[] }) {
           name="q"
           type="text"
           placeholder="e.g. student ID, umbrella, keys"
-          className="min-h-8 border-none bg-transparent py-1 text-base text-ink-900 outline-none placeholder:text-ink-500"
+          className="min-h-11 border-none bg-transparent py-1 text-base text-ink-900 outline-none placeholder:text-ink-500"
         />
       </div>
 
-      <div className="flex min-w-0 flex-[1_1_170px] flex-col gap-0.5 border-brand-200 px-3.5 py-2 sm:border-l">
+      <div className="flex min-w-0 flex-1 flex-col gap-0.5 border-brand-200 px-3.5 py-2 sm:border-l">
         <label htmlFor="hero-loc" className="text-xs font-bold uppercase tracking-wide text-ink-700">
           Where?
         </label>
@@ -31,7 +31,7 @@ export function SearchForm({ locations }: { locations: Location[] }) {
             id="hero-loc"
             name="location"
             defaultValue=""
-            className="min-h-8 w-full min-w-0 appearance-none border-none bg-transparent py-1 pl-0 pr-10 text-base text-ink-900 outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
+            className="min-h-11 w-full min-w-0 appearance-none border-none bg-transparent py-1 pl-0 pr-10 text-base text-ink-900 outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
           >
             <option value="">Anywhere on campus</option>
             {locations.map((l) => (
@@ -46,7 +46,7 @@ export function SearchForm({ locations }: { locations: Location[] }) {
 
       <button
         type="submit"
-        className="flex min-h-14 flex-none items-center justify-center gap-2 rounded-[14px] bg-brand-700 px-7 text-base font-bold text-white hover:bg-brand-800"
+        className="flex min-h-14 w-full flex-none items-center justify-center gap-2 rounded-[14px] bg-brand-700 px-7 text-base font-bold text-white hover:bg-brand-800 sm:w-auto"
       >
         <SearchIcon />
         Search

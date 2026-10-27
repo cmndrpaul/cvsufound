@@ -16,7 +16,7 @@ import type { ClaimStatus } from "@/types/database";
 
 export default function ItemPage(props: PageProps<"/items/[id]">) {
   return (
-    <div className="mx-auto w-full max-w-5xl px-5 py-12 sm:px-8">
+    <div className="mx-auto w-full max-w-5xl px-5 py-10 sm:px-8 sm:py-12 lg:py-16">
       <Link href="/items" className="mb-6 inline-block text-[15px] font-bold">
         &larr; Back to all items
       </Link>
@@ -59,8 +59,8 @@ async function ItemDetail({ params }: { params: PageProps<"/items/[id]">["params
   const isFoundItem = item.type === "found";
 
   return (
-    <article className="grid gap-8 md:grid-cols-[1.1fr_1fr]">
-      <div className="flex h-72 items-center justify-center overflow-hidden rounded-3xl bg-brand-100 text-[#5c8466] md:h-auto md:min-h-96">
+    <article className="grid min-w-0 gap-6 md:grid-cols-[1.1fr_1fr] md:gap-8">
+      <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-3xl bg-brand-100 text-[#5c8466] md:aspect-auto md:min-h-96">
         {photo ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={photo} alt={item.title} className="h-full w-full object-cover" />
@@ -81,12 +81,12 @@ async function ItemDetail({ params }: { params: PageProps<"/items/[id]">["params
           ) : null}
         </div>
 
-        <h1 className="font-display text-4xl font-extrabold leading-tight tracking-tight text-brand-800">
+        <h1 className="break-words font-display text-3xl font-extrabold leading-tight tracking-tight text-brand-800 sm:text-4xl">
           {item.title}
         </h1>
 
         <ul className="flex flex-col gap-2.5 text-base text-ink-700">
-          <li className="flex items-center gap-2.5">
+          <li className="flex min-w-0 items-start gap-2.5 break-words">
             <PinIcon /> {place || "Location not specified"}
           </li>
           <li className="flex items-center gap-2.5">

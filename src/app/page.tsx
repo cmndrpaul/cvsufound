@@ -17,7 +17,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <section id="browse" className="mx-auto flex w-full max-w-6xl flex-col gap-7 px-5 pb-6 pt-16 sm:px-8">
+      <section id="browse" className="mx-auto flex w-full max-w-6xl flex-col gap-7 px-5 pb-6 pt-10 sm:px-8 sm:pt-16 lg:pt-20">
         {!isSupabaseConfigured ? <SetupNotice reason="keys" /> : null}
         <div className="flex flex-col gap-2">
           <h2 className="font-display text-4xl font-extrabold tracking-tight text-brand-800">
@@ -38,12 +38,12 @@ export default function HomePage() {
 function Hero() {
   return (
     <section className="bg-brand-800">
-      <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-14 px-5 pb-24 pt-16 sm:px-8 sm:pt-[72px]">
-        <div className="flex min-w-0 flex-[1_1_520px] flex-col gap-5">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-stretch gap-10 px-5 py-10 sm:px-8 sm:py-14 md:flex-row md:items-center md:gap-10 lg:gap-14 lg:py-20">
+        <div className="flex min-w-0 flex-1 flex-col gap-5">
           <span className="w-fit rounded-full bg-[#1b6a3a] px-3.5 py-1.5 text-sm font-semibold text-gold-200">
             {siteConfig.tagline}
           </span>
-          <h1 className="font-display text-5xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-6xl">
+          <h1 className="font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-5xl lg:text-6xl">
             Lost something on campus? <span className="text-gold-400">Let&apos;s find it.</span>
           </h1>
           <p className="max-w-xl text-lg leading-relaxed text-[#cfe5d3]">
@@ -72,7 +72,7 @@ function Hero() {
         </div>
 
         {/* Right side: the newest real reports, or tips while there are none. */}
-        <div className="flex min-w-0 flex-[1_1_340px] flex-col items-center gap-4">
+        <div className="flex min-w-0 flex-1 flex-col items-center gap-4">
           <Suspense fallback={<TipCards />}>
             <HeroSide />
           </Suspense>
@@ -229,7 +229,7 @@ async function RecentItems() {
         </EmptyState>
       ) : (
         <>
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-5">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {items.map((item) => (
               <ItemCard key={item.id} item={item} />
             ))}
@@ -263,16 +263,16 @@ function HowItWorks() {
   ];
 
   return (
-    <section id="how" className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 pb-6 pt-20 sm:px-8">
+    <section id="how" className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 pb-6 pt-12 sm:px-8 sm:pt-16 lg:pt-20">
       <div className="flex flex-col gap-2">
         <h2 className="font-display text-4xl font-extrabold tracking-tight text-brand-800">
           How CvSUFound works
         </h2>
         <p className="text-base text-ink-700">Three steps from missing to matched.</p>
       </div>
-      <ol className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
+      <ol className="grid grid-cols-1 gap-5 md:grid-cols-3">
         {steps.map((s, i) => (
-          <li key={s.title} className="flex flex-col gap-3.5 rounded-[20px] border border-brand-200 bg-white p-7">
+          <li key={s.title} className="flex flex-col gap-3.5 rounded-[20px] border border-brand-200 bg-white p-6 sm:p-7">
             <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-brand-700 font-display text-[22px] font-extrabold text-gold-400">
               {i + 1}
             </span>
@@ -288,9 +288,9 @@ function HowItWorks() {
 function ReportCtas() {
   const desk = siteConfig.claimDesk;
   return (
-    <section id="report" className="mx-auto w-full max-w-6xl px-5 pb-20 pt-12 sm:px-8">
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-5">
-        <div className="flex flex-col items-start gap-4 rounded-3xl bg-brand-100 p-10">
+    <section id="report" className="mx-auto w-full max-w-6xl px-5 pb-10 pt-10 sm:px-8 sm:pb-16 lg:pb-20 lg:pt-12">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div className="flex flex-col items-start gap-4 rounded-3xl bg-brand-100 p-6 sm:p-10">
           <h3 className="font-display text-3xl font-extrabold tracking-tight text-brand-800">
             I lost something
           </h3>
@@ -301,7 +301,7 @@ function ReportCtas() {
             Report lost item
           </ButtonLink>
         </div>
-        <div className="flex flex-col items-start gap-4 rounded-3xl bg-brand-800 p-10">
+        <div className="flex flex-col items-start gap-4 rounded-3xl bg-brand-800 p-6 sm:p-10">
           <h3 className="font-display text-3xl font-extrabold tracking-tight text-white">
             I found something
           </h3>

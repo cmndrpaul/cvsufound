@@ -14,7 +14,7 @@ export const metadata: Metadata = { title: "Browse items – CvSUFound" };
 
 export default function ItemsPage(props: PageProps<"/items">) {
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 py-12 sm:px-8">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 py-10 sm:px-8 sm:py-12 lg:py-16">
       <header className="flex flex-col gap-2">
         <h1 className="font-display text-4xl font-extrabold tracking-tight text-brand-800">Browse items</h1>
         <p className="text-base text-ink-700">Search everything that has been reported lost or found.</p>
@@ -77,7 +77,7 @@ async function ItemsContent({ searchParams }: { searchParams: PageProps<"/items"
           </EmptyState>
         )
       ) : (
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-5">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {items.map((item) => (
             <ItemCard key={item.id} item={item} />
           ))}
@@ -85,7 +85,7 @@ async function ItemsContent({ searchParams }: { searchParams: PageProps<"/items"
       )}
 
       {totalPages > 1 ? (
-        <nav aria-label="Pagination" className="flex items-center justify-center gap-4">
+        <nav aria-label="Pagination" className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           {page > 1 ? (
             <ButtonLink href={itemsHref(active, { page: String(page - 1) })} variant="secondary">
               Previous

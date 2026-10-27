@@ -16,8 +16,8 @@ export const metadata: Metadata = { title: "My reports – CvSUFound" };
 
 export default function MyReportsPage() {
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col gap-10 px-5 py-12 sm:px-8">
-      <header className="flex flex-wrap items-end justify-between gap-4">
+    <div className="mx-auto flex w-full max-w-4xl flex-col gap-10 px-5 py-10 sm:px-8 sm:py-12 lg:py-16">
+      <header className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
         <div className="flex flex-col gap-2">
           <h1 className="font-display text-4xl font-extrabold tracking-tight text-brand-800">My reports</h1>
           <p className="text-base text-ink-700">Items you posted and requests you sent.</p>
@@ -66,14 +66,14 @@ async function MyReportsContent() {
             {items.map((item) => (
               <li
                 key={item.id}
-                className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-brand-200 bg-white p-5"
+                className="flex min-w-0 flex-col items-stretch gap-4 rounded-2xl border border-brand-200 bg-white p-5 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="flex min-w-0 flex-col gap-2">
                   <div className="flex flex-wrap items-center gap-2">
                     <TypeBadge type={item.type} />
                     <StatusBadge status={item.status} />
                   </div>
-                  <Link href={`/items/${item.id}`} className="text-lg font-bold">
+                  <Link href={`/items/${item.id}`} className="break-words text-lg font-bold">
                     {item.title}
                   </Link>
                   <span className="text-sm text-ink-500">{formatDate(item.event_date)}</span>
@@ -114,11 +114,11 @@ async function MyReportsContent() {
             {claims.map((claim) => (
               <li
                 key={claim.id}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-brand-200 bg-white p-5"
+                className="flex min-w-0 flex-col items-start gap-3 rounded-2xl border border-brand-200 bg-white p-5 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="flex min-w-0 flex-col gap-1.5">
                   {claim.items ? (
-                    <Link href={`/items/${claim.items.id}`} className="text-lg font-bold">
+                    <Link href={`/items/${claim.items.id}`} className="break-words text-lg font-bold">
                       {claim.items.title}
                     </Link>
                   ) : (

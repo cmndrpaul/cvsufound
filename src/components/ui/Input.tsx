@@ -2,7 +2,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export const inputClass =
-  "w-full rounded-xl border border-brand-200 bg-white px-4 py-3 text-base text-ink-900 placeholder:text-ink-500 focus:border-brand-700";
+  "min-h-11 w-full rounded-xl border border-brand-200 bg-white px-4 py-3 text-base text-ink-900 placeholder:text-ink-500 focus:border-brand-700";
 
 export function Input({ className, ...props }: ComponentProps<"input">) {
   return <input className={cn(inputClass, className)} {...props} />;

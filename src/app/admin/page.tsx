@@ -16,7 +16,7 @@ export const metadata: Metadata = { title: "Claim desk – CvSUFound" };
 
 export default function AdminPage() {
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-5 py-12 sm:px-8">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-5 py-10 sm:px-8 sm:py-12 lg:py-16">
       <header className="flex flex-col gap-2">
         <h1 className="font-display text-4xl font-extrabold tracking-tight text-brand-800">Claim desk</h1>
         <p className="text-base text-ink-700">Review requests and keep the listings tidy.</p>
@@ -74,10 +74,10 @@ async function AdminContent() {
           <ul className="flex flex-col gap-4">
             {pending.map((claim) => (
               <li key={claim.id} className="flex flex-col gap-4 rounded-2xl border border-brand-200 bg-white p-6">
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex min-w-0 flex-wrap items-center gap-2">
                   {claim.items ? <TypeBadge type={claim.items.type} /> : null}
                   {claim.items ? (
-                    <Link href={`/items/${claim.items.id}`} className="text-lg font-bold">
+                    <Link href={`/items/${claim.items.id}`} className="break-words text-lg font-bold">
                       {claim.items.title}
                     </Link>
                   ) : (
@@ -86,14 +86,14 @@ async function AdminContent() {
                   <span className="text-sm text-ink-500">· sent {formatDate(claim.created_at)}</span>
                 </div>
 
-                <dl className="grid gap-x-8 gap-y-1 text-[15px] sm:grid-cols-3">
+                <dl className="grid min-w-0 grid-cols-1 gap-x-8 gap-y-3 text-[15px] sm:grid-cols-3">
                   <div>
                     <dt className="font-bold text-ink-900">Name</dt>
-                    <dd className="text-ink-700">{claim.profiles?.full_name || "—"}</dd>
+                    <dd className="break-words text-ink-700">{claim.profiles?.full_name || "—"}</dd>
                   </div>
                   <div>
                     <dt className="font-bold text-ink-900">Student number</dt>
-                    <dd className="text-ink-700">{claim.profiles?.student_number || "—"}</dd>
+                    <dd className="break-words text-ink-700">{claim.profiles?.student_number || "—"}</dd>
                   </div>
                   <div>
                     <dt className="font-bold text-ink-900">Email</dt>
@@ -142,14 +142,14 @@ async function AdminContent() {
             {items.map((item) => (
               <li
                 key={item.id}
-                className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-brand-200 bg-white p-5"
+                className="flex min-w-0 flex-col items-stretch gap-4 rounded-2xl border border-brand-200 bg-white p-5 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="flex min-w-0 flex-col gap-2">
                   <div className="flex flex-wrap items-center gap-2">
                     <TypeBadge type={item.type} />
                     <StatusBadge status={item.status} />
                   </div>
-                  <Link href={`/items/${item.id}`} className="text-lg font-bold">
+                  <Link href={`/items/${item.id}`} className="break-words text-lg font-bold">
                     {item.title}
                   </Link>
                   <span className="text-sm text-ink-500">{formatDate(item.event_date)}</span>
