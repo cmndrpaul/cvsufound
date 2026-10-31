@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useState, type Dispatch, type ReactNode, type SetStateAction } from "react";
 import Link from "next/link";
+import { buttonPressClass } from "@/components/ui/Button";
 import { usePathname } from "next/navigation";
 
 const menuLinks = [
@@ -41,7 +42,7 @@ export function MobileNav({ children }: { children: ReactNode }) {
     <>
       <button
         type="button"
-        className="flex min-h-11 min-w-11 items-center justify-center rounded-xl text-brand-800 hover:bg-brand-50 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-gold-400 md:hidden"
+        className={`${buttonPressClass} flex min-h-11 min-w-11 items-center justify-center rounded-xl text-brand-800 hover:bg-brand-50 enabled:active:bg-brand-100 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-gold-400 md:hidden`}
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         aria-controls="mobile-navigation"

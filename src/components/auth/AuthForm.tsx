@@ -66,7 +66,7 @@ export function LoginForm() {
         </p>
       ) : null}
 
-      <Button type="submit" size="lg" disabled={isSubmitting}>
+      <Button type="submit" size="lg" loading={isSubmitting}>
         {isSubmitting ? "Logging in…" : "Log in"}
       </Button>
 
@@ -173,7 +173,7 @@ export function SignupForm() {
         </p>
       ) : null}
 
-      <Button type="submit" size="lg" disabled={isSubmitting}>
+      <Button type="submit" size="lg" loading={isSubmitting}>
         {isSubmitting ? "Creating account…" : "Create account"}
       </Button>
 

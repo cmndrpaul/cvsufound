@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonPressClass } from "@/components/ui/Button";
 import { Field, Input, Select, Textarea } from "@/components/ui/Input";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
@@ -128,7 +128,8 @@ export function ReportForm({
               aria-pressed={type === t}
               onClick={() => setValue("type", t, { shouldValidate: true })}
               className={cn(
-                "min-h-14 rounded-2xl border-2 px-4 text-base font-bold",
+                buttonPressClass,
+                "min-h-14 rounded-2xl border-2 px-4 text-base font-bold enabled:active:bg-brand-100 enabled:active:text-brand-900",
                 type === t
                   ? "border-brand-700 bg-brand-700 text-white"
                   : "border-brand-200 bg-white text-ink-700 hover:border-brand-700",
@@ -228,7 +229,7 @@ export function ReportForm({
       ) : null}
 
       <div className="flex flex-wrap items-center gap-3">
-        <Button type="submit" size="lg" disabled={isSubmitting}>
+        <Button type="submit" size="lg" loading={isSubmitting}>
           {isSubmitting ? "Posting…" : isLost ? "Post lost report" : "Post found item"}
         </Button>
         <p className="text-sm text-ink-500">Your contact details stay private.</p>

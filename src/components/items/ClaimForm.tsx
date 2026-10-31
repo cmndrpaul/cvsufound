@@ -76,7 +76,7 @@ export function ClaimForm({
       ) : null}
 
       <div>
-        <Button type="submit" disabled={isSubmitting}>
+        <Button type="submit" loading={isSubmitting}>
           {isSubmitting ? "Sending…" : isFoundItem ? "This is mine" : "I found this"}
         </Button>
       </div>

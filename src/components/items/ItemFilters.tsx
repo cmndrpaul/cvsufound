@@ -1,6 +1,6 @@
 import Form from "next/form";
 import Link from "next/link";
-import { buttonClass } from "@/components/ui/Button";
+import { buttonClass, buttonPressClass } from "@/components/ui/Button";
 import { Input, Select } from "@/components/ui/Input";
 import { cn } from "@/lib/utils";
 import type { Category, ItemType, Location } from "@/types/database";
@@ -51,6 +51,8 @@ export function ItemFilters({
               href={itemsHref({ ...active, type: tab.type })}
               aria-current={selected ? "page" : undefined}
               className={cn(
+                buttonPressClass,
+                "active:bg-brand-100 active:text-brand-900",
                 "flex min-h-11 shrink-0 items-center rounded-full px-6 text-[15px] font-bold no-underline",
                 selected ? "bg-brand-700 text-white" : "text-ink-700 hover:bg-brand-100",
               )}
@@ -71,6 +73,8 @@ export function ItemFilters({
               href={itemsHref({ ...active, category: c.slug })}
               aria-current={selected ? "page" : undefined}
               className={cn(
+                buttonPressClass,
+                "active:bg-brand-100 active:text-brand-900",
                 "flex min-h-11 shrink-0 items-center rounded-full border-[1.5px] px-[18px] text-[14.5px] font-semibold no-underline",
                 selected
                   ? "border-brand-700 bg-brand-700 text-white"

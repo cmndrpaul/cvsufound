@@ -1,4 +1,5 @@
 import Form from "next/form";
+import { buttonPressClass } from "@/components/ui/Button";
 import { ChevronDownIcon, SearchIcon } from "@/components/ui/icons";
 import type { Location } from "@/types/database";
 
@@ -18,7 +19,7 @@ export function SearchForm({ locations }: { locations: Location[] }) {
           name="q"
           type="text"
           placeholder="e.g. student ID, umbrella, keys"
-          className="min-h-11 border-none bg-transparent py-1 text-base text-ink-900 outline-none placeholder:text-ink-500"
+          className="min-h-11 rounded-xl border-none bg-transparent px-2 py-1 text-base text-ink-900 outline-none placeholder:text-ink-500"
         />
       </div>
 
@@ -31,7 +32,7 @@ export function SearchForm({ locations }: { locations: Location[] }) {
             id="hero-loc"
             name="location"
             defaultValue=""
-            className="min-h-11 w-full min-w-0 appearance-none border-none bg-transparent py-1 pl-0 pr-10 text-base text-ink-900 outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
+            className="peer min-h-11 w-full min-w-0 appearance-none rounded-xl border-none bg-transparent py-1 pl-2 pr-10 text-base text-ink-900 outline-none transition-colors duration-150 focus-visible:bg-brand-50 focus-visible:outline-none motion-reduce:transition-none"
           >
             <option value="">Anywhere on campus</option>
             {locations.map((l) => (
@@ -40,13 +41,13 @@ export function SearchForm({ locations }: { locations: Location[] }) {
               </option>
             ))}
           </select>
-          <ChevronDownIcon className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-ink-700" />
+          <ChevronDownIcon className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-ink-700 transition-transform duration-200 ease-out peer-[:open]:rotate-180 motion-reduce:transition-none" />
         </div>
       </div>
 
       <button
         type="submit"
-        className="flex min-h-14 w-full flex-none items-center justify-center gap-2 rounded-[14px] bg-brand-700 px-7 text-base font-bold text-white hover:bg-brand-800 sm:w-auto"
+        className={`${buttonPressClass} flex min-h-14 w-full flex-none items-center justify-center gap-2 rounded-[14px] bg-brand-700 px-7 text-base font-bold text-white shadow-sm hover:bg-brand-800 enabled:active:bg-brand-900 sm:w-auto`}
       >
         <SearchIcon />
         Search
