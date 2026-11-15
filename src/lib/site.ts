@@ -3,10 +3,10 @@ export const siteConfig = {
   name: "CvSUFound",
   tagline: "Lost & Found for the CvSU community",
   claimDesk: {
-    office: "[OFFICE NAME]",
-    location: "[BUILDING / ROOM]",
-    hours: "[OFFICE HOURS]",
-    contact: "[EMAIL / CONTACT NO.]",
+    office: "CSG OFFICE",
+    location: "OSAS BUILDING",
+    hours: "11:00AM - 01:00PM",
+    contact: "cvsunaiccsg@cvsu.edu.ph",
   },
   // Optional: only allow this email domain on the signup form, e.g. "cvsu.edu.ph".
   // Set it in .env.local as NEXT_PUBLIC_ALLOWED_EMAIL_DOMAIN.

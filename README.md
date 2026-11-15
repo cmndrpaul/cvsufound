@@ -65,11 +65,14 @@ that Supabase isn't connected.
 4. Open **Authentication, URL Configuration**:
    - **Site URL**: `http://localhost:3000` (change to your Vercel URL after deploying)
    - **Redirect URLs**: add `http://localhost:3000/auth/callback`
-5. Sign up on your site, then make yourself admin. Edit the email in `supabase/make_admin.sql` and
+5. Under **Authentication, Sign In / Providers, Email**, turn off **Confirm email** and save.
+   This app uses email and password registration without email verification. New users are signed
+   in immediately; Supabase must have this setting disabled to stop sending confirmation emails.
+6. Sign up on your site, then make yourself admin. Edit the email in `supabase/make_admin.sql` and
    run it in the SQL Editor.
 
-Tip: while testing, you can turn off **Confirm email** under Authentication, Providers, Email so
-you can log in right after signing up. Turn it back on before launch.
+Email ownership is not verified with this configuration, so an account's email address is not
+proof of identity or ownership of a campus email address.
 
 ## Edit the claim desk details
 

@@ -83,7 +83,6 @@ export function LoginForm() {
 export function SignupForm() {
   const router = useRouter();
   const [serverError, setServerError] = useState<string | null>(null);
-  const [checkEmail, setCheckEmail] = useState(false);
   const {
     register,
     handleSubmit,
@@ -105,7 +104,6 @@ export function SignupForm() {
       password: values.password,
       options: {
         data: { full_name: values.full_name, student_number: values.student_number },
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
     });
 
@@ -119,21 +117,8 @@ export function SignupForm() {
       router.refresh();
       return;
     }
-    setCheckEmail(true);
-  }
-
-  if (checkEmail) {
-    return (
-      <div role="status" className="flex flex-col gap-3 rounded-2xl bg-brand-50 p-6">
-        <h2 className="font-display text-2xl font-extrabold text-brand-800">Check your email</h2>
-        <p className="text-[15.5px] leading-relaxed text-ink-700">
-          We sent a confirmation link. Open it, then come back and{" "}
-          <Link href="/login" className="font-bold">
-            log in
-          </Link>
-          .
-        </p>
-      </div>
+    setServerError(
+      "Registration could not sign you in. Please contact the site administrator for help."
     );
   }
 
