@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useSyncExternalStore, type FormEvent } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/Button";
 import { Field, Input } from "@/components/ui/Input";
@@ -22,7 +22,30 @@ function safeNext(value: string | null) {
   return value && value.startsWith("/") && !value.startsWith("//") ? value : "/";
 }
 
+const subscribe = () => () => {};
+const clientReady = () => true;
+const serverReady = () => false;
+
+// Keep native form submission disabled until React has attached its handlers.
+function useAuthReady() {
+  return useSyncExternalStore(subscribe, clientReady, serverReady);
+}
+
+async function submitAuthForm(
+  event: FormEvent<HTMLFormElement>,
+  submit: (event: FormEvent<HTMLFormElement>) => Promise<void>,
+  onError: (message: string) => void,
+) {
+  event.preventDefault();
+  try {
+    await submit(event);
+  } catch {
+    onError("Unable to connect or save your sign-in session. Please check your connection and browser settings, then try again.");
+  }
+}
+
 export function LoginForm() {
+  const ready = useAuthReady();
   const router = useRouter();
   const [serverError, setServerError] = useState<string | null>(null);
   const {
@@ -52,7 +75,9 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-5">
+    <form onSubmit={(event) => submitAuthForm(event, handleSubmit(onSubmit), setServerError)} noValidate>
+      {!ready ? <p role="status">Loading form. If this stays visible, reload the page in Safari with JavaScript enabled.</p> : null}
+      <fieldset disabled={!ready} className="flex min-w-0 flex-col gap-5">
       <Field label="Email" htmlFor="email" error={errors.email?.message}>
         <Input id="email" type="email" autoComplete="email" {...register("email")} />
       </Field>
@@ -76,11 +101,13 @@ export function LoginForm() {
           Create an account
         </Link>
       </p>
+      </fieldset>
     </form>
   );
 }
 
 export function SignupForm() {
+  const ready = useAuthReady();
   const router = useRouter();
   const [serverError, setServerError] = useState<string | null>(null);
   const {
@@ -125,7 +152,9 @@ export function SignupForm() {
   const domain = siteConfig.allowedEmailDomain;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-5">
+    <form onSubmit={(event) => submitAuthForm(event, handleSubmit(onSubmit), setServerError)} noValidate>
+      {!ready ? <p role="status">Loading form. If this stays visible, reload the page in Safari with JavaScript enabled.</p> : null}
+      <fieldset disabled={!ready} className="flex min-w-0 flex-col gap-5">
       <Field label="Full name" htmlFor="full_name" error={errors.full_name?.message}>
         <Input id="full_name" autoComplete="name" {...register("full_name")} />
       </Field>
@@ -168,6 +197,7 @@ export function SignupForm() {
           Log in
         </Link>
       </p>
+      </fieldset>
     </form>
   );
 }
